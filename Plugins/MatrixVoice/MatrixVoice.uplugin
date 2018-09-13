@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "MatrixVoice",
+	"Description": "",
+	"Category": "Voice",
+	"CreatedBy": "luchuangchuang",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+    {
+      "Name": "MatrixVoice",
+      "Type": "Runtime",
+      "LoadingPhase": "PreDefault"
+    }
+   
+	]
+}

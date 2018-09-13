@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "SqliteSupport",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "dds",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "SqliteSupport",
+			"Type": "Developer",
+			"LoadingPhase": "PreDefault"
+		}
+	]
+}

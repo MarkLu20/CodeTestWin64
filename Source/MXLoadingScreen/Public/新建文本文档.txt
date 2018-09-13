@@ -1,0 +1,16 @@
+#ifndef _MXLOADINGSCREEN_H_
+#define _MXLOADINGSCREEN_H_
+
+
+#include "ModuleInterface.h"
+
+class IMXLoadingScreenModule : public IModuleInterface
+
+{
+
+public :
+	virtual void StartInGameLoadingScreen() = 0;
+
+};
+
+#endif // _MXLOADINGSCREEN_H_

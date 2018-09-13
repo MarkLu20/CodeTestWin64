@@ -1,0 +1,2 @@
+:: 这是注释        "使用的引擎的Unrealpak.exe的路径"                             打包后的路径 要打包的的资源文件
+"F:\UE4.18.3Server\UnrealEngine-V4.18.3\Engine\Binaries\Win64\UnrealPak.exe "  F:\OutPak.Pak G:\UETestProject\CodeTestForWindows\Content\ThirdPersonBP\Blueprints\ThirdPersonCharacter.uasset

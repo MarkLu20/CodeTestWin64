@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{E998087D-4D46-692A-9132-B0946F77CB85}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "CodeTestForWindows",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"CoreUObject",
+				"Engine",
+				"UMG",
+				"AIModule"
+			]
+		},
+		{
+			"Name": "MXLoadingScreen",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "CookPak",
+			"Enabled": true
+		}
+	]
+}

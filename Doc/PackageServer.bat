@@ -1,0 +1,1 @@
+"E:\UE4.18.3Server\UnrealEngine-V4.18.3\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="F:\UETestProject\LinuxServerTest\LinuxServerTest.uproject" -noP4 -platform=Linux -clientconfig=Development -serverconfig=Development -serverconfig=Development -cook -server -serverplatform=Linux -noclient -build -stage -pak -archive -archivedirectory="E:\BatPackage"
