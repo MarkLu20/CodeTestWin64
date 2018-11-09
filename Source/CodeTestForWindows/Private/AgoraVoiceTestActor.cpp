@@ -99,7 +99,7 @@ void AAgoraVoiceTestActor::DoThing()
 		 UWorld *World= UGameplayStatics::GetPlayerController(this, 0)->GetWorld();
 		 //UGameplayStatics::GetPlayerController(this, 0)->GetGameInstance()->
 		 ULevel* Level = GetLevel();
-		ULevelScriptBlueprint *Bp= Level->GetLevelScriptBlueprint();
+		//ULevelScriptBlueprint *Bp= Level->GetLevelScriptBlueprint();
 		//Bp->
 		TestWebStr.Add("Protocol-v2");
 		FString trestt="fsadfew";

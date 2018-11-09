@@ -18,6 +18,7 @@ class CODETESTFORWINDOWS_API ULevelGameViewportClient : public UGameViewportClie
 	
 	
 public:
+	ULevelGameViewportClient();
 	virtual void BeginDestroy() override;
 
 
@@ -25,5 +26,14 @@ public:
 
 
 	virtual void Tick(float DeltaTime) override;
+
+
+	virtual void Init(struct FWorldContext& WorldContext, UGameInstance* OwningGameInstance, bool bCreateNewAudioDevice = true) override;
+	void BindText(FText text);
+private:
+	UPROPERTY()
+		TSubclassOf<UUserWidget> StartingWidgetClass;
+	UPROPERTY()
+		UUserWidget* CurrentWidget = nullptr;
 
 };

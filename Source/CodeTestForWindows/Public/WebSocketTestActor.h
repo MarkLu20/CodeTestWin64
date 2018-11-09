@@ -30,4 +30,6 @@ public:
 		void SendMessage(const FString &Message);
 	UFUNCTION(BlueprintCallable, Category = "Test")
 		void CloseWebSocket();
+private:
+
 };

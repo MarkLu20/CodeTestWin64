@@ -8,6 +8,7 @@
 #include "ModuleManager.h"
 #include "WebSocketTest.h"
 
+
 // Sets default values
 AWebSocketTestActor::AWebSocketTestActor()
 {
@@ -20,6 +21,7 @@ AWebSocketTestActor::AWebSocketTestActor()
 void AWebSocketTestActor::BeginPlay()
 {
 	Super::BeginPlay();
+	
 	
 }
 

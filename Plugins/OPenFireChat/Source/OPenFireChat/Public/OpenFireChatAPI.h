@@ -71,7 +71,7 @@ public:
 	*/
 	void RemoveConnection();
 	//UFUNCTION(BlueprintCallable, Category = "OpenFire")
-	FORCEINLINE	void SendPrivateMessage(const FString &FromUser, const FString &ToUser, const FString &Msg);
+	void SendPrivateMessage(const FString &FromUser, const FString &ToUser, const FString &Msg);
 
 	FGetXmppPtr GetXmpptr;
 	FDelegateHandle MucChatDelegate;

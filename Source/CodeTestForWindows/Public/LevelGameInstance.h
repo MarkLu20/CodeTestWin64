@@ -12,6 +12,7 @@
 #include "UnrealSignal.h"
 #include "SqliteSupport.h"
 #include "Runnable.h"
+#include "Runtime/SlateCore/Public/Widgets/SWindow.h"
 #include "AgoraVoiceTestActor.h"
 #include "LevelGameInstance.generated.h"
 
@@ -50,6 +51,8 @@ public:
 	void EndMap(UWorld *World);
    UFUNCTION(BlueprintCallable)
 	void ShowLoadingScreen();
+   UFUNCTION(BlueprintCallable)
+	   void HideLoadingScreen();
    void DirtyPackage(UPackage *Package);
    UFUNCTION(BlueprintCallable)
    void FindAllUStruct();
@@ -92,6 +95,15 @@ private:
 	bool HasLoaded(FName PackageName);
 	TFunction<void(int,float)> testfuncPointer;
 	//TSharedPtr < SMXLoadingScreenWidget >LoadingScreenWidget;
+private:
+	UPROPERTY()
+		TSubclassOf<UUserWidget> StartingWidgetClass;
+	UPROPERTY()
+		UUserWidget* CurrentWidget = nullptr;
+	void OnRequestDestroyWindowOverride(const TSharedRef<SWindow>& SWindow);
+
+	FRequestDestroyWindowOverride RequestDestroyWindowOverride;
+	IMXLoadingScreenModule *LoadingScreenModule=nullptr;
 };
 
 

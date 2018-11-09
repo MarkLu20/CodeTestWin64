@@ -10,11 +10,20 @@
 #include "Runtime/CoreUObject/Public/CoreUObject.h"
 #include "MXLoadingScreen/Public/MXLoadingScreen.h"
 #include "Engine.h"
+#include "Runtime/UMG/Public/UMG.h"
+#include "Runtime/UMG/Public/UMGStyle.h"
+#include "Runtime/UMG/Public/IUMGModule.h"
+#include "Runtime/UMG/Public/UMGStyle.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
+#include "Runtime/UMG/Public/Components/Slider.h"
+#include "MainUserWidget.h"
+#include "TestUI.h"
 #include "TestObject.h"
 #include "OpenFireChatAPI.h"
 #include "Runtime/CoreUObject/Public/CoreUObjectSharedPCH.h"
 #include "TestObject.h"
 #include "LuachuGameProcess.h"
+#include "HttpObject.h"
 
 //#define HUIDIAO(X) [X](int val, float valf) { X->Test(val, valf)
 //#include "Serialization/AsyncLoadingPrivate.h"
@@ -30,7 +39,13 @@ ULevelGameInstance::ULevelGameInstance(/*const FObjectInitializer &ObjectInitial
 }
 
 void ULevelGameInstance::Init()
-{
+{    
+	RequestDestroyWindowOverride.BindUObject(this, &ULevelGameInstance::OnRequestDestroyWindowOverride);
+#ifndef WITH_EDITOR
+	Cast<UGameEngine>(GEngine)->GameViewportWindow.Pin().Get()->SetRequestDestroyWindowOverride(RequestDestroyWindowOverride);
+#endif 
+	
+
 	_tmpDelegate.BindUObject(this, &ULevelGameInstance::LoadAsyncCB);
 	TMap<int32, FString> testmap;
 	testmap.Add(1, "fsadfad");
@@ -57,11 +72,23 @@ void ULevelGameInstance::Init()
 	(*testmape.Find(FString("test")))(100, 20.0f);
 	
 	
+	/*if (UClass* StartingClass = LoadClass<UUserWidget>(nullptr, TEXT("WidgetBlueprint'/Game/NewWidgetBlueprint.NewWidgetBlueprint_C'")))
+	{
+		UWorld *world = GetWorld();
+		CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), StartingClass);
+		if (CurrentWidget)
+		{
+			CurrentWidget->AddToViewport();
+		}
+
+	}*/
 }
 
 void ULevelGameInstance::Shutdown()
 {
 	//OpenFire->RemoveConnection();
+	TWeakObjectPtr<UHttpObject> http = GetDefault<UHttpObject>();
+	http->ShutDownHttpThread();
 }
 
 void ULevelGameInstance::LoadComplete(const float LoadTime, const FString& MapName)
@@ -200,12 +227,17 @@ void ULevelGameInstance::EndMap(UWorld * World)
 
 void ULevelGameInstance::ShowLoadingScreen()
 {
-	IMXLoadingScreenModule *const LoadingScreenModule = FModuleManager::LoadModulePtr<IMXLoadingScreenModule>("MXLoadingScreen");
+	 LoadingScreenModule = FModuleManager::LoadModulePtr<IMXLoadingScreenModule>("MXLoadingScreen");
 	if (LoadingScreenModule!=nullptr)
 	{
 		LoadingScreenModule->StartInGameLoadingScreen();
 		
 	}
+}
+
+void ULevelGameInstance::HideLoadingScreen()
+{
+	LoadingScreenModule->ShutDownLoadingScreen();
 }
 
 void ULevelGameInstance::DirtyPackage(UPackage *Package)
@@ -295,5 +327,10 @@ bool ULevelGameInstance::HasLoaded(FName PackageName)
 {
 	ULevelStreaming *level= UGameplayStatics::GetStreamingLevel(UGameplayStatics::GetPlayerController(this,0),PackageName);
 	return level->HasLoadedLevel();
+}
+
+void ULevelGameInstance::OnRequestDestroyWindowOverride(const TSharedRef<SWindow>& SWindow)
+{
+	UE_LOG(LogTemp, Error, TEXT(" Want to close"));
 }
 

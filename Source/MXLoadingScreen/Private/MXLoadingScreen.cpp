@@ -135,10 +135,14 @@ public:
 		{
 			FLoadingScreenAttributes LoadingScreen;
 			LoadingScreen.bAutoCompleteWhenLoadingCompletes = false;
+			LoadingScreen.PlaybackType = EMoviePlaybackType::MT_Looped;
+			LoadingScreen.bMoviesAreSkippable = false;
+			LoadingScreen.bWaitForManualStop = true;
 			LoadingScreen.WidgetLoadingScreen = SNew(SMXLoadingScreenWidget);
 			/*LoadingScreen.MoviePaths.Add(TEXT("LoadingScreen"));*/
 			MoviePlayer = GetMoviePlayer();
 			MoviePlayer->SetupLoadingScreen(LoadingScreen);
+			MoviePlayer->SetSlateOverlayWidget(SNew(SMXLoadingScreenWidget));
 			
 			//MoviePlayer->WaitForMovieToFinish();
 
