@@ -1,0 +1,25 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "BreakpointResume",
+  "Description": "HTTPBreakpointResume",
+  "Category": "Download",
+  "CreatedBy": "luchuangchuang",
+  "CreatedByURL": "",
+  "DocsURL": "",
+  "MarketplaceURL": "",
+  "SupportURL": "",
+  "EngineVersion": "4.18",
+  "CanContainContent": true,
+  "IsBetaVersion": false,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "BreakpointResume",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "WhitelistPlatforms": [ "Win64", "Win32", "IOS", "Android", "Linux" ]
+}
