@@ -94,6 +94,7 @@ private:
 	int32 Index;
 	bool HasLoaded(FName PackageName);
 	TFunction<void(int,float)> testfuncPointer;
+	void OnEndFrameDel();
 	//TSharedPtr < SMXLoadingScreenWidget >LoadingScreenWidget;
 private:
 	UPROPERTY()

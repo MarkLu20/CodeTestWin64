@@ -63,7 +63,7 @@ public class AgoraSignal : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
             );
-
+      
         if (Target.Platform == UnrealTargetPlatform.Win32 || Target.Platform == UnrealTargetPlatform.Win64) 
             {
             string OSVersion = (Target.Platform == UnrealTargetPlatform.Win32) ? "x86" : "x64";

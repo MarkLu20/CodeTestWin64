@@ -53,7 +53,7 @@
  void UWebSocketTest::Closeoncet(const FString& Url, const TArray<FString>& Protocols, const TMap<FString, FString>& UpgradeHeaders /*= TMap<FString, FString>()*/)
  {
 	// TSharedRef<IWebSocket> WebSocket = WSModule->CreateWebSocket(Url, Protocols);
-	 WebSocketPtr->Close();
+	 //WebSocketPtr->Close();
 	 
  }
 

@@ -32,7 +32,10 @@ public:
 	/** Does the thing. */
 	UFUNCTION(BlueprintCallable, Category = Test)
 		void DoThing();
-
+	UFUNCTION(BlueprintCallable, Category = QuitGame)
+		void CacheString(const FString &Content);
+	UFUNCTION(BlueprintCallable, Category = QuitGame)
+		const TArray<FString>& GetCacheString();
 	
 	bool SHA256(const FString &data,FSHA256Signature &Out);
 

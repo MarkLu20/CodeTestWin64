@@ -2,8 +2,8 @@ TITLE CO UnrealPak Extract Tool
 @ECHO OFF
  SET Unreal_PATH=G:\MatrixUnrealEngine4.18.3\Engine\Binaries\Win64\UnrealPak.exe
  SET KeyFile_PATH=H:\CodeTestForWindows\Doc\KeyFileBig.txt
- SET P_Value=12664b1
- SET Q_Value=1272d7b
+ SET P_Value=bebbc5f
+ SET Q_Value=beaeb67
  ECHO ---------------------------------------
  ECHO UnrealPak GenerateKey
  ECHO ---------------------------------------

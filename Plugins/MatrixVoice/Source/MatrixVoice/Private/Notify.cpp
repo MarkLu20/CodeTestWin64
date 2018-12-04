@@ -94,13 +94,13 @@ UNotify * UNotify::GetNotifyInstance()
 
 FString UNotify::GetOpenId(FString path)
 {
-	FString JsonValue;
+	/*FString JsonValue;
 	path = FPaths::ProjectDir() / *path;
 	FFileHelper::LoadFileToString(JsonValue,*path);
 	TSharedPtr<FJsonObject> JsonObject;
 	TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(JsonValue);
 	bool BFlag = FJsonSerializer::Deserialize(JsonReader,JsonObject);
-	FString OpenId = JsonObject->GetStringField("ID");
+	FString OpenId = JsonObject->GetStringField("ID");*/
 
-	return OpenId;
+	return FString("");
 }

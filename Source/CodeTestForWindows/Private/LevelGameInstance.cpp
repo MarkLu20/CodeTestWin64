@@ -9,7 +9,7 @@
 #include "Runtime/CoreUObject/Private/Serialization/AsyncLoadingThread.h"
 #include "Runtime/CoreUObject/Public/CoreUObject.h"
 #include "MXLoadingScreen/Public/MXLoadingScreen.h"
-#include "Engine.h"
+#include "UnrealEngine.h"
 #include "Runtime/UMG/Public/UMG.h"
 #include "Runtime/UMG/Public/UMGStyle.h"
 #include "Runtime/UMG/Public/IUMGModule.h"
@@ -24,6 +24,8 @@
 #include "TestObject.h"
 #include "LuachuGameProcess.h"
 #include "HttpObject.h"
+#include "UpdateActor.h"
+#include "SingleTon.h"
 
 //#define HUIDIAO(X) [X](int val, float valf) { X->Test(val, valf)
 //#include "Serialization/AsyncLoadingPrivate.h"
@@ -33,6 +35,7 @@ ULevelGameInstance::ULevelGameInstance(/*const FObjectInitializer &ObjectInitial
 
 	//ASceneManagerActor::GetSceneMangerInStance()->InitSceneM(this);
 	Index =0;
+	USingleTon* TestSing = NewObject<USingleTon>();
 	
 	
 
@@ -42,9 +45,14 @@ void ULevelGameInstance::Init()
 {    
 	RequestDestroyWindowOverride.BindUObject(this, &ULevelGameInstance::OnRequestDestroyWindowOverride);
 #ifndef WITH_EDITOR
+
 	Cast<UGameEngine>(GEngine)->GameViewportWindow.Pin().Get()->SetRequestDestroyWindowOverride(RequestDestroyWindowOverride);
+	//Cast<UGameEngine>(GEngine)->GameViewportWindow.Pin()->SetTitleBar(nullptr);
 #endif 
 	
+	GEngine->OnWorldAdded();
+	
+	FCoreDelegates::PostModal.AddUObject(this, &ULevelGameInstance::OnEndFrameDel);
 
 	_tmpDelegate.BindUObject(this, &ULevelGameInstance::LoadAsyncCB);
 	TMap<int32, FString> testmap;
@@ -203,7 +211,17 @@ void ULevelGameInstance::EndMap(UWorld * World)
 
 	StreamingArray = World->StreamingLevels;
 	//World->FindWorldInPackage();
-	
+	if (World->GetName().Equals(FString(TEXT("ThirdPersonExampleMap"))))
+	{
+		//LoadClass<AActor>(nullptr, TEXT("Blueprint'/Game/TestBP/MyUpdateActor.MyUpdateActor'"));
+		FStringAssetReference Referrence = TEXT("Blueprint'/Game/TestBP/MyUpdateActor.MyUpdateActor'");
+		FStreamableManager StreamManager;
+		UObject *TestUpdateActorClass = StreamManager.LoadSynchronous(Referrence, true);
+
+		//World->SpawnActor<AActor>(TestUpdateActorClass->StaticClass(),FVector(0.0f, 0.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f));
+		//AUpdateActor *TestUpdateActor = World->SpawnActor<AUpdateActor>(FVector(0.0f, 0.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f), FActorSpawnParameters());
+	}
+
 	StreamingArrayNum = StreamingArray.Num();
 	//FString test = StreamingArray[0]->PackageNameToLoad.ToString();
 	//LoadPackageAsync(StreamingArray[0]->PackageNameToLoad.ToString(), _tmpDelegate);
@@ -216,7 +234,6 @@ void ULevelGameInstance::EndMap(UWorld * World)
 		bool loaded = HasLoaded(StreamingArray[i]->PackageNameToLoad);
 		
 		UE_LOG(LogTemp, Error, TEXT("StreamingLevel %s"), *StreamingArray[i]->PackageNameToLoad.ToString());
-		
 		
 	}
 	
@@ -328,6 +345,12 @@ bool ULevelGameInstance::HasLoaded(FName PackageName)
 	ULevelStreaming *level= UGameplayStatics::GetStreamingLevel(UGameplayStatics::GetPlayerController(this,0),PackageName);
 	return level->HasLoadedLevel();
 }
+
+void ULevelGameInstance::OnEndFrameDel()
+{
+	UE_LOG(LogTemp, Error, TEXT(" Editor End"));
+}
+
 
 void ULevelGameInstance::OnRequestDestroyWindowOverride(const TSharedRef<SWindow>& SWindow)
 {

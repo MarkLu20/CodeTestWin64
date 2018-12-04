@@ -242,10 +242,10 @@ void UHttpObject::ShutDownHttpThread()
 {  //关闭http模块
 	
 	bPause = true;
-	if (httpObject)
+	/*if (httpObject)
 	{
 		httpObject->RemoveFromRoot();
-	}
+	}*/
 
 	if (TargetFile)
 	{
@@ -320,27 +320,28 @@ void UHttpObject::BeginDestroy()
 #undef LOCTEXT_NAMESPACE 
 //if (bSucceeded)
 //{
-//	 int32 code=HttpResponse->GetResponseCode();
-//	TArray<FJsonList> jsonList;
-//	FJsonList jsondata;
-//	TArray<TSharedPtr<FJsonValue>> JsonParsed;
-//	TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(HttpResponse->GetContentAsString());
-//	if (FJsonSerializer::Deserialize(JsonReader, JsonParsed))
-//	{
-//		for (size_t i = 0; i < JsonParsed.Num(); i++)
-//		{
-//			jsondata.Uid = FString::FromInt(JsonParsed[i]->AsObject()->GetIntegerField("uid"));
-//			jsondata.Userid = JsonParsed[i]->AsObject()->GetStringField("userid");
-//			jsondata.UserName = JsonParsed[i]->AsObject()->GetStringField("username");
-//			jsondata.UserPWD = JsonParsed[i]->AsObject()->GetStringField("userpwd");
-//			jsondata.ZoneMark = JsonParsed[i]->AsObject()->GetStringField("zonemark");
-//			jsonList.Add(jsondata);
-//			
-//		}
-//		PassJsonData.Broadcast(jsonList);
-//		//test.Broadcast(FString(TEXT("sadfasdfasdfasdfasdf")));
-//		GetURLData(jsonList);
-//		
+	// int32 code=HttpResponse->GetResponseCode();
+	//TArray<FJsonList> jsonList;
+	//FJsonList jsondata;
+	//TArray<TSharedPtr<FJsonValue>> JsonParsed;
+	//TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(HttpResponse->GetContentAsString());
+	//if (FJsonSerializer::Deserialize(JsonReader, JsonParsed))
+	//{  
+	//	
+	//	for (size_t i = 0; i < JsonParsed.Num(); i++)
+	//	{
+	//		jsondata.Uid = FString::FromInt(JsonParsed[i]->AsObject()->GetIntegerField("uid"));
+	//		jsondata.Userid = JsonParsed[i]->AsObject()->GetStringField("userid");
+	//		jsondata.UserName = JsonParsed[i]->AsObject()->GetStringField("username");
+	//		jsondata.UserPWD = JsonParsed[i]->AsObject()->GetStringField("userpwd");
+	//		jsondata.ZoneMark = JsonParsed[i]->AsObject()->GetStringField("zonemark");
+	//		jsonList.Add(jsondata);
+	//		
+	//	}
+	//	PassJsonData.Broadcast(jsonList);
+	//	//test.Broadcast(FString(TEXT("sadfasdfasdfasdfasdf")));
+	//	GetURLData(jsonList);
+	//	
 //	}
 
 

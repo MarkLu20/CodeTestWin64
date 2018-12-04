@@ -7,7 +7,7 @@
 #include "ModuleManager.h"
 #include "WebSocketsModule.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
-
+#include "SingleTon.h"
 
 // Sets default values
 AAgoraVoiceTestActor::AAgoraVoiceTestActor()
@@ -71,7 +71,7 @@ void AAgoraVoiceTestActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		TestWebStr.Add(TEXT("v11.stomp"));
 
 		FString url = FString(TEXT("ws://192.168.2.13:8081/websocket"));
-		testWeb->Closeoncet(url, TestWebStr);
+		//testWeb->Closeoncet(url, TestWebStr);
 		FString testetas;
 		float a = 100.f;
 		//Mangager->ReleaseRtcEgine();
@@ -105,6 +105,18 @@ void AAgoraVoiceTestActor::DoThing()
 		FString trestt="fsadfew";
 	
 
+}
+
+void AAgoraVoiceTestActor::CacheString(const FString &Content)
+{
+	TWeakObjectPtr<USingleTon>	SingleTon = GetDefault<USingleTon>();
+	SingleTon->CacheString(Content);
+}
+
+const TArray<FString>& AAgoraVoiceTestActor::GetCacheString()
+{
+	TWeakObjectPtr<USingleTon>	SingleTon = GetDefault<USingleTon>();
+	return SingleTon->GetCacheString();
 }
 
 bool AAgoraVoiceTestActor::SHA256(const FString & data, FSHA256Signature & Out)

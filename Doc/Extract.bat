@@ -1,0 +1,2 @@
+G:\MatrixUnrealEngine4.18.3\Engine\Binaries\Win64\UnrealPak.exe H:\UETestProject\DataSercet\WindowsNoEditor\DataSercet\Content\Paks\pakchunk2-WindowsNoEditor.pak  -Extract H:\UETestProject\DataSercet\WindowsNoEditor\DataSercet\Content\Paks  -aes=e3VqgSMhuaPw75fm0PdGZCN3ASwpVOk5IjtiLf8VOEdqGL6eaw05JeX0RHMgBvyetr 
+REM //-aes=e3VqgSMhuaPw75fm0PdGZCN3ASwpVOk5IjtiLf8VOEdqGL6eaw05JeX0RHMgBvyetr 
